@@ -1,24 +1,23 @@
 import React, { Component } from "react";
-import { ThemeContext } from "../context/ThemeContext";
+import { withTheme } from "../context/ThemeContext";
 
-export default class DummyChild extends Component {
+class DummyChild extends Component {
   render() {
+    const { theme } = this.props;
     return (
       <div>
-        <ThemeContext.Consumer>
-          {({ theme }) => (
-            <div
-              style={{
-                backgroundColor: theme.background,
-                color: theme.color,
-              }}
-            >
-              {" "}
-              {theme.name}{" "}
-            </div>
-          )}
-        </ThemeContext.Consumer>
+        <div
+          style={{
+            backgroundColor: theme.background,
+            color: theme.color,
+          }}
+        >
+          {" "}
+          {theme.name}{" "}
+        </div>
       </div>
     );
   }
 }
+
+export default withTheme(DummyChild);
